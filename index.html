@@ -4,6 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tabs com api</title>
+    <Style>
+        body{
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            background: #f4f4f4;
+        }
+        .tabs{
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .tab-btn{
+            flex: 1;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            background: #ddd;
+            font-size: 16;
+        }
+        .tab-btn.active{
+            background: #007bff;
+            color: white;
+        }
+        .tab-content{
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .tab-content.active{
+            display: block;
+        }
+        input{
+            width: 100%;
+            padding: 10px;
+            margin: 8px;
+            box-sizing: border-box;
+        }
+        button{
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .resultado{
+            margin-top: 15px;
+            padding: 15px;
+            background: #eee;
+            border-radius: 5px;
+            min-height: 40px;
+        }
+    </Style>
 </head>
 
 <body>
@@ -28,6 +84,28 @@
             document.querySelectorAll('tab-content')[index].classList.add('active');
             document.querySelector('tab-btn')[index].classList.add('active');
         }
+        function formatarResposta(resultado){
+            if(resultado.erro){
+                return `<div style="color:#721c24;padding:15px;background:#f8d7da;border:1px solid #f5c6cb;border-radius:5px;font-weight:bold;">
+                    erro:${resultado.erro}</div>`;
+            }
+            let html=`<div style="padding:15px;background:#d4eda;color:#15724;border:1px solid #c3e6cd;border-radius:5px;"`;
+                html+=`<h3 style=",margin-top=0;margin-bottom:15px;border-bottom:1px solid #c3e6cb;padding-bottom:5px;">sucesso</h3>`
+                html+=`<ul style="list-style-type:none;padding-left:0;margin:0;"`;
+                
+                for(const[key,value]of Object.entries(resultado)){
+                    let label=key.charAt(0).toLocaleUpperCase()+key.slice(1)
+                    if(key.toLocaleLowerCase()==="imc"){
+                        label="IMC";
+                    }
+                    html+=`<li style="margin-buttom:8px;font-size:16;">
+                        <strong style="color:#0b2e13">${label}</strong> ${value}
+                        </li>`
+                }
+                html+=`</ul>
+                </div>`;
+                return html;
+        }   
         async function calcularImc(){
             const dados={
                 nome: document.getElementById("nome").value,
