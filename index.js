@@ -49,7 +49,7 @@ async function calcularImc(){
 async function calcularMedia(){
     const dados={
         nota1: document.getElementById("nota1").value,
-        nota2: document.getElementById('nota2').value,
+        nota2: document.getElementById('nota2').value
     }
     try {
         const response = await fetch("http://localhost:3000/media",{
@@ -61,5 +61,26 @@ async function calcularMedia(){
         document.getElementById("resultadoMedia").innerHTML = formatarResposta(resultado);
     } catch (error) {
         document.getElementById("resultadoMedia").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
+    }
+}
+async function fazerLogin(){
+    const dados={
+        email: document.getElementById("email").value,
+        senha: document.getElementById('senha').value
+    }
+    try {
+        const response = await fetch("http://localhost:3000/login",{
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(dados)
+        });
+        const resultado = await response.json();
+        if(resultado.token){
+            window.location.href='index.html'
+        }else{
+            alert('Email ou Senha incorreto');
+        }
+    } catch (error) {
+        document.getElementById("resultadoLogin").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
     }
 }
