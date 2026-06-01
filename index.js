@@ -76,7 +76,8 @@ async function fazerLogin(){
         });
         const resultado = await response.json();
         if(resultado.token){
-            window.location.href='index.html'
+            localStorage.setItem("token", resultado.token);
+            window.location.href='index.html';
         }else{
             alert('Email ou Senha incorreto');
         }

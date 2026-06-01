@@ -28,6 +28,13 @@
         <button onclick="calcularMedia()">Calcular média</button>
         <div class="resultado" id="resultadoMedia"></div>
     </div>
+
+    <script>
+        //alert(localStorage.getItem("token"))
+        if(localStorage.getItem("token") != "123456"){
+            window.location.href='login.html';
+        }
+    </script>
 </body>
 
 </html>
