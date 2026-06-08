@@ -1,3 +1,8 @@
+if(window.location.pathname.endsWith('index.html') && !localStorage.getItem('token')){
+    window.location.href='login.html'
+}
+
+
 function abrirTab(index) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -84,4 +89,8 @@ async function fazerLogin(){
     } catch (error) {
         document.getElementById("resultadoLogin").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
     }
+}
+function logout(){
+    localStorage.removeItem('token')
+    window.location.href="login.html"
 }
