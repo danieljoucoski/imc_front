@@ -10,7 +10,7 @@
 <body>
     <div class="tabs">
         <button class="tab-btn active" onclick="abrirTab(0)">Cadastrar cliente</button>
-        <button class="tab-btn" onclick="abrirTab(1)">Cadastrar produto</button>
+        <button class="tab-btn" onclick="abrirTab(1)">Cadastrar usuario</button>
     </div>
     <a id="logout" class="logout-link" onclick="logout()">Logout</a>
 
@@ -28,11 +28,12 @@
         <div class="resultado" id="resultadoCadastro"></div>
     </div>
     <div class="tab-content">
-        <h2>Calcular média</h2>
-        <input type="number" id="nota1" placeholder="Digite sua primeira nota">
-        <input type="number" id="nota2" placeholder="Digite sua segunda nota">
-        <button onclick="calcularMedia()">Calcular média</button>
-        <div class="resultado" id="resultadoMedia"></div>
+        <h2>Cadastrar Usuario</h2>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <input type="text" id="email" placeholder="Digite sue email">
+        <input type="text" id="senha" placeholder="Digite sua senha">
+        <button onclick="fazerCadastroUsuario()">Cadastrar</button>
+        <div class="resultado" id="resultadoCadastroUsuario"></div>
     </div>
 
 </body>

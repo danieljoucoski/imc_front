@@ -151,3 +151,26 @@ async function fazerCadastro(){
         document.getElementById("resultadoCadastro").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
     }
 }
+async function fazerCadastroUsuario(){
+    const dados={
+        nome: document.getElementById("nome").value,
+        email: document.getElementById('email').value,
+        senha: document.getElementById('senha').value
+    }
+    try {
+        const response = await fetch("http://localhost:3000/usuarios",{
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(dados)
+        });
+        const resultado = await response.json();
+        if (!resultado.erro) {
+            document.getElementById("nome").value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('senha').value = "";
+        }
+        document.getElementById("resultadoCadastroUsuario").innerHTML = formatarResposta(resultado);
+    } catch (error) {
+        document.getElementById("resultadoCadastroUsuario").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
+    }
+}
