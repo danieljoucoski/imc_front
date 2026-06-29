@@ -137,6 +137,15 @@ async function fazerCadastro(){
             body: JSON.stringify(dados)
         });
         const resultado = await response.json();
+        if (!resultado.erro) {
+            document.getElementById("nome").value = "";
+            document.getElementById('CPF').value = "";
+            document.getElementById('CEP').value = "";
+            document.getElementById('rua').value = "";
+            document.getElementById('cidade').value = "";
+            document.getElementById('estado').value = "";
+            document.getElementById('numero').value = "";
+        }
         document.getElementById("resultadoCadastro").innerHTML = formatarResposta(resultado);
     } catch (error) {
         document.getElementById("resultadoCadastro").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
