@@ -94,3 +94,51 @@ function logout(){
     localStorage.removeItem('token')
     window.location.href="login.html"
 }
+
+
+
+function buscarEndereco() {
+    const CEP = document.getElementById('CEP').value;
+  
+  
+    fetch(`https://viacep.com.br/ws/${CEP}/json/`)
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na requisição: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+         // alert(data)
+        document.getElementById('rua').value= data.logradouro
+        document.getElementById('cidade').value= data.localidade
+        document.getElementById('estado').value= data.estado
+        document.getElementById('numero').focus()
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('erro: ', error)
+      });
+}
+async function fazerCadastro(){
+    const dados={
+        nome: document.getElementById("nome").value,
+        CPF: document.getElementById('CPF').value,
+        CEP: document.getElementById('CEP').value,
+        rua: document.getElementById('rua').value,
+        cidade: document.getElementById('cidade').value,
+        estado: document.getElementById('estado').value,
+        numero: document.getElementById('numero').value
+    }
+    try {
+        const response = await fetch("http://localhost:3000/clientes",{
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(dados)
+        });
+        const resultado = await response.json();
+        document.getElementById("resultadoCadastro").innerHTML = formatarResposta(resultado);
+    } catch (error) {
+        document.getElementById("resultadoCadastro").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
+    }
+}
