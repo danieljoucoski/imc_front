@@ -10,7 +10,7 @@
 <body>
     <div class="tabs">
         <button class="tab-btn active" onclick="abrirTab(0)">Cadastrar cliente</button>
-        <button class="tab-btn" onclick="abrirTab(1)">Cadastrar usuario</button>
+        <button class="tab-btn" onclick="abrirTab(1)">Pesquisar clientes</button>
     </div>
     <a id="logout" class="logout-link" onclick="logout()">Logout</a>
 
@@ -28,14 +28,11 @@
         <div class="resultado" id="resultadoCadastro"></div>
     </div>
     <div class="tab-content">
-        <h2>Cadastrar Usuario</h2>
-        <input type="text" id="nome" placeholder="Digite seu nome">
-        <input type="text" id="email" placeholder="Digite sue email">
-        <input type="text" id="senha" placeholder="Digite sua senha">
-        <button onclick="fazerCadastroUsuario()">Cadastrar</button>
-        <div class="resultado" id="resultadoCadastroUsuario"></div>
+        <h2>Pesquisar cliente</h2>
+        <input type="text" id="pesquisarCPF" placeholder="Digite o CPF para identificar cliente">
+        <button onclick="pesquisarCliente()">Pesquisar</button>
+        <div class="resultado" id="clientes"></div>
     </div>
-
 </body>
 
 </html>

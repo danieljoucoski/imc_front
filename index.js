@@ -174,3 +174,24 @@ async function fazerCadastroUsuario(){
         document.getElementById("resultadoCadastroUsuario").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
     }
 }
+
+
+async function pesquisarCliente(){
+    const dados={
+        pesquisarCPF: document.getElementById("pesquisarCPF").value,
+    }
+    try {
+        const response = await fetch("http://localhost:3000/pesquisarClientes   ",{
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(dados)
+        });
+        const resultado = await response.json();
+        document.getElementById("resultadoPesquisaCliente").innerHTML = formatarResposta(resultado);
+        if(resultado.erro){
+            alert('Cliente não encontrado');
+        }
+    } catch (error) {
+        document.getElementById("resultadoPesquisaCliente").innerHTML = formatarResposta({error: "Ocorreu um erro  inesperado. Por favor tente novamente mais tarde"});
+    }
+}
