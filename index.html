@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <script src="index.js"></script>
+
 <body>
     <div class="tabs">
-        <button class="tab-btn active" onclick="abrirTab(0)">Cadastrar cliente</button>
-        <button class="tab-btn" onclick="abrirTab(1)">Pesquisar clientes</button>
+        <button class="tab-btn active" onclick="abrirTab(0)">Clientes cadastrados</button>
+        <button class="tab-btn" onclick="abrirTab(1)">Cadastrar cliente</button>
     </div>
     <a id="logout" class="logout-link" onclick="logout()">Logout</a>
 
-
     <div class="tab-content active">
+        <h2>Cliente cadastrados</h2>
+        <div class="search-container">
+            <input type="text" id="busca-CPF" password="busca CPF">
+            <button onclick="buscarCliente()">Buscar</button>
+            <button onclick="listarClientes()" style="background: #6c757d;">Limpar</button>
+        </div>
+        <div id="listarClientes" class="client-list"></div>
+    </div>
+
+    <div class="tab-content">
         <h2>Cadastrar cliente</h2>
         <input type="text" id="nome" placeholder="Digite seu nome">
         <input type="number" id="CPF" placeholder="Digite sue CPF">
@@ -27,12 +37,7 @@
         <button onclick="fazerCadastro()">Cadastrar</button>
         <div class="resultado" id="resultadoCadastro"></div>
     </div>
-    <div class="tab-content">
-        <h2>Pesquisar cliente</h2>
-        <input type="text" id="pesquisarCPF" placeholder="Digite o CPF para identificar cliente">
-        <button onclick="pesquisarCliente()">Pesquisar</button>
-        <div class="resultado" id="clientes"></div>
-    </div>
+
 </body>
 
 </html>
